@@ -1,34 +1,40 @@
-import pandas as dp
+import pandas as pd
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plot
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-import algo
+import config as cfg
 
-dataset = "../dataset/hackaton_training_v1.csv"
+def normalize_data(dataset):
+    """Normalize the data for some known border values.
 
-dp.options.display.max_rows = 5000
-dp.options.display.max_columns = 50
-dp.options.display.width = 1000
+    Param: dataset The data to work with.
 
-data = dp.read_csv(dataset, sep=",", usecols = [2,3,5,7,9,11])
+    Return: The normalized dataset.
+    """
+    output = dataset[(dataset[cfg.age_header] > 0)
+                     & (dataset[cfg.income_header] <= 30000)
+                     & (dataset[cfg.days_overdue_header] <= 1000)]
 
-outcome_var = 'v_10'
-#model = LogisticRegression()
-model = DecisionTreeClassifier()
-predictor_var = ['v_1','v_2','v_4','v_6']
-algo.classification_model(model, data, predictor_var, outcome_var)
+    return output
 
+def load_data():
+    """Transfor the input dataset to the model.
 
-#data = dp.read_csv(dataset, sep=",", usecols = [1,2,3,4,5,6,7,8,9,10,11,12,13])
-#returns = data[[key for key in dict(data.dtypes) if dict(data.dtypes)[key] in ['float64', 'int64']]].pct_change()
-#plot.figure(figsize=(10,10))
-#plot.plot(data['v_10'])
-#plot.show()
-#corr = data.corr()
-#corr.style.background_gradient()
-#f = open("output.txt",'w')
-#print(corr, file=f) # Python 3.x
-#print(returns)
+    Param:  csv_file The dataset filename.
+
+    Return: data               The dataset with data to use in the model.
+    Return: id                 The dataset (column) with the ide of each entry
+                               in the model.
+    Return: train_target_data: The dataset (column) with the results entries
+                               that should be used for training.
+    """
+    use_columns = [cfg.id_header, cfg.days_overdue_header,
+                   cfg.current_job_days_header, cfg.age_header,
+                   cfg.income_header, cfg.training_target_header]
+
+    data = pd.read_csv(cfg.input_dataset_filename, usecols=use_columns)
+    data = normalize_data(data)
+
+    id_data = data[cfg.id_header]
+    train_target_data = data[cfg.training_target_header]
+    output_data = data.drop([cfg.id_header, cfg.training_target_header], axis=1)
+
+    return (output_data, id_data, train_target_data)
