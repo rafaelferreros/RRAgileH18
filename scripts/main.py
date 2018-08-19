@@ -6,11 +6,7 @@ import config as cfg
 def main():
     dataset, data_id, train_target = etl.load_data()
 
-    print(dataset.head())
-    print(data_id.head())
-
-
-    model = algo.create_random_forest_regressor();
+    model = algo.create_random_forest_regressor()
     algo.train_model(model, dataset, train_target,
                      cfg.training_test_percent, cfg.training_random_seed)
 
