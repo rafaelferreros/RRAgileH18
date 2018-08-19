@@ -16,6 +16,7 @@ dp.options.display.width = 1000
 data = dp.read_csv(dataset, sep=",", usecols = [2,3,5,7,9,11])
 
 outcome_var = 'v_10'
+#model = LogisticRegression()
 model = DecisionTreeClassifier()
 predictor_var = ['v_1','v_2','v_4','v_6']
 algo.classification_model(model, data, predictor_var, outcome_var)

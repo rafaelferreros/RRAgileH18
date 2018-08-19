@@ -3,7 +3,7 @@ import pandas as pd
 import glob
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import train_test_split
-from matplotlib import pyplot as plot
+#from matplotlib import pyplot as plot
 from sklearn.ensemble import RandomForestRegressor
 
 def train_data():
@@ -90,15 +90,15 @@ def train_data():
     #accuracy = 100 - np.mean(mape)
     #print(accuracy)
 
-    plot.figure(figsize=(100,100))
+    #plot.figure(figsize=(100,100))
     #print(test_goal.size)
 
 
-    plot.plot(range(0, test_goal.size), test_goal, 'gs')
-    plot.plot(range(0, test_goal.size), predictions, 'bs')
-    plot.plot(range(0, test_goal.size), banco_guest, 'rs')
+    #plot.plot(range(0, test_goal.size), test_goal, 'gs')
+    #plot.plot(range(0, test_goal.size), predictions, 'bs')
+    #plot.plot(range(0, test_goal.size), banco_guest, 'rs')
 
-    plot.show()
+    #plot.show()
 #
     #errors = abs(predictions - test_goal)
 
