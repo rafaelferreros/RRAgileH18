@@ -226,3 +226,5 @@ if __name__ == '__main__':
     train_data()
     print("--------------With Decision Tree---------------")
     DTR_data()
+    f = open("../result/output.txt",'w')
+    print("Hola paco como estas", file=f) # Python 3.x
