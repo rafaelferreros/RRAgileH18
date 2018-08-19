@@ -4,6 +4,7 @@ from sklearn.cross_validation import KFold  # For K-fold cross validation
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 from sklearn import metrics
+import numpy as np
 
 
 # Generic function for making a classification model and accessing performance:

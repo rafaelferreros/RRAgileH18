@@ -94,11 +94,11 @@ def train_data():
     #print(test_goal.size)
 
 
-#    plot.plot(range(0, test_goal.size), test_goal, 'gs')
-#    #plot.plot(range(0, test_goal.size), predictions, 'bs')
-#    plot.plot(range(0, test_goal.size), banco_guest, 'rs')
-#
-#    plot.show()
+    plot.plot(range(0, test_goal.size), test_goal, 'gs')
+    plot.plot(range(0, test_goal.size), predictions, 'bs')
+    plot.plot(range(0, test_goal.size), banco_guest, 'rs')
+
+    plot.show()
 #
     #errors = abs(predictions - test_goal)
 
