@@ -1,3 +1,5 @@
 rragile-hackathon2018:
   build : .
   container_name: rragile
+  volumes:
+  - ./result:/result
