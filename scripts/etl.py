@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import config as cfg
 
+
 def normalize_data(dataset):
     """Normalize the data for some known border values.
 
@@ -14,6 +15,7 @@ def normalize_data(dataset):
                      & (dataset[cfg.days_overdue_header] <= 1000)]
 
     return output
+
 
 def load_data():
     """Transfor the input dataset to the model.
@@ -37,4 +39,4 @@ def load_data():
     train_target_data = data[cfg.training_target_header]
     output_data = data.drop([cfg.id_header, cfg.training_target_header], axis=1)
 
-    return (output_data, id_data, train_target_data)
+    return output_data, id_data, train_target_data

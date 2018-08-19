@@ -5,6 +5,7 @@ from sklearn.metrics import mean_squared_log_error
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 
+
 def predict(model, data):
     """Predict the result.
 
@@ -14,6 +15,7 @@ def predict(model, data):
     """
     return model.predict(data)
 
+
 def create_random_forest_regressor():
     """Creates a random forest regressor model.
 
@@ -22,6 +24,7 @@ def create_random_forest_regressor():
     rfr = RandomForestRegressor(n_estimators = 1000, random_state = 100)
     return rfr
 
+
 def create_decision_tree_regressor():
     """Creates a decision tree regressor.
 
@@ -29,6 +32,7 @@ def create_decision_tree_regressor():
     """
     dtr = DecisionTreeRegressor(max_depth=8)
     return dtr
+
 
 def rmsl_error(real, predicted):
     """Calculates the root mean squared log error.
