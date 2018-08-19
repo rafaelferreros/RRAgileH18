@@ -25,18 +25,28 @@ def load_data():
     Return: data               The dataset with data to use in the model.
     Return: id                 The dataset (column) with the ide of each entry
                                in the model.
+    Return: train_data         The dataset that should be used for training the
+                               model.
     Return: train_target_data: The dataset (column) with the results entries
                                that should be used for training.
     """
     use_columns = [cfg.id_header, cfg.days_overdue_header,
                    cfg.current_job_days_header, cfg.age_header,
-                   cfg.income_header, cfg.training_target_header]
+                   cfg.income_header]
+
+    use_columns_train = [cfg.days_overdue_header, cfg.current_job_days_header,
+                         cfg.age_header, cfg.income_header,
+                         cfg.training_target_header]
 
     data = pd.read_csv(cfg.input_dataset_filename, usecols=use_columns)
     data = normalize_data(data)
 
     id_data = data[cfg.id_header]
-    train_target_data = data[cfg.training_target_header]
-    output_data = data.drop([cfg.id_header, cfg.training_target_header], axis=1)
+    output_data = data.drop(cfg.id_header, axis=1)
 
-    return output_data, id_data, train_target_data
+    train_data = pd.read_csv(cfg.training_dataset_filename,
+                             usecols=use_columns_train)
+    train_target_data = train_data[cfg.training_target_header]
+    train_data = train_data.drop(cfg.training_target_header, axis=1)
+
+    return output_data, id_data, train_data, train_target_data
