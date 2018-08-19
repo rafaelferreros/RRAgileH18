@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import config as cfg
 import os.path
@@ -10,15 +11,16 @@ def save_results(id, data):
     """
     assert(len(id) == len(data))
 
+    id = id.reset_index(drop=True)
     id_data = id.to_frame()
+
     predicted_data = pd.DataFrame(data)
 
     result_data = id_data.join(predicted_data)
 
-    print(result_data.tail())
-    return
+    result_data.columns = ['id', 'payment score']
+    result_path = os.path.dirname(cfg.output_dataset_filename)
 
-    result_path = os.path.dirname(cfg.output_dataset_filename);
     try:
         os.mkdir(result_path)
     except FileExistsError:
