@@ -39,13 +39,13 @@ def load_data():
                          cfg.training_target_header]
 
     data = pd.read_csv(cfg.input_dataset_filename, usecols=use_columns)
-    data = normalize_data(data)
 
     id_data = data[cfg.id_header]
     output_data = data.drop(cfg.id_header, axis=1)
 
     train_data = pd.read_csv(cfg.training_dataset_filename,
                              usecols=use_columns_train)
+    train_data = normalize_data(train_data)
     train_target_data = train_data[cfg.training_target_header]
     train_data = train_data.drop(cfg.training_target_header, axis=1)
 
